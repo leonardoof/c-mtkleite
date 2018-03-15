@@ -1,0 +1,38 @@
+﻿
+$(document).ready(function () {
+
+    $('#add.item-button'
+    
+    .on('click, addItems');)
+});
+
+
+function addItems () {
+
+    $('#add.item-error') .hide();
+    var newTitle = $ ('#add.item-title')
+    .val();
+
+    var data = {title: newTitle };
+    $.post ('ToDo/AddItem' , data,
+    function () {
+        window.location = '/ToDo';
+
+
+    })
+
+    .fail(function (data){
+
+        if (!data || !data.responseJSON)
+      {
+
+        return;
+
+        var key = object.keys(data.responseJSON)[0];
+        var firstError = data 
+        .responseJSON[key];
+        $('#add.item-error')
+        .text(firstError)
+     .show();
+    })
+    }
